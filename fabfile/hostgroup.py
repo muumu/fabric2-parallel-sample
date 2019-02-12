@@ -20,14 +20,14 @@ def get_component(name):
     if component_name in get_component_dic():
         return get_component_dic()[component_name]
     elif name in ReverseHostDic:
-        return ReverseHostDic[name].component
+        return ReverseHostDic[name]['component']
     else:
         return UnknownComponent
 
 def get_environment(name):
     global ReverseHostDic
     if name in ReverseHostDic:
-        return ReverseHostDic[name].environment
+        return ReverseHostDic[name]['environment']
     t = name.split('.')
     if len(t) > 1:
         env = t[1]
@@ -41,7 +41,7 @@ def init_reverse_host_dic():
         for h in hosts:
             ReverseHostDic[h] = {
                 'component': get_component(groupname),
-                'environement': get_environment(groupname)
+                'environment': get_environment(groupname)
                 }
 
 init_reverse_host_dic()
