@@ -20,6 +20,15 @@ def run(c, command=None, warn=False, print_result=True):
     return r
 
 @task
+def sudo(c, command=None, user='root', warn=False, print_result=True):
+    c = get_group()
+    r = c.sudo(command, user=user, warn=warn)
+    if print_result:
+        for connection, result in r.items():
+            print(connection.host + ': ' + result.stdout.strip())
+    return r
+
+@task
 def build(c):
     c = get_group()
     return c.component.build(c)

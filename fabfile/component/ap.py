@@ -2,7 +2,7 @@
 
 class Ap:
     def build(self, c):
-        return c.run('echo "Building application server..."')
+        return c.sudo('echo "Building application server..."')
 
     def start(self, c):
         return c.run('echo "Starting application server..."')
